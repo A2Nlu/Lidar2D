@@ -46,18 +46,20 @@ lidar2d/
 
 ## 3. Pacote da SICK
   Para a comunição com o LIDAR2D e recebimento dos dados, foi utilizado o pacote dispolibilizado pela SICK, para a sua instalação pode-se acessar: https://github.com/SICKAG/sick_scan_xd/blob/develop/INSTALL-ROS2.md#build-on-linux-ros2, ou seguiur os seguintes passos:
-1. cd lidar2d/src
-2. git clone https://github.com/SICKAG/libsick_ldmrs.git
-3. git clone -b master https://github.com/SICKAG/sick_scan_xd.git
-4. popd
-5. rm -rf ./build ./build_isolated/ ./devel ./devel_isolated/ ./install ./install_isolated/ ./log/
-6. cd ..
-7. source /opt/ros/iron/setup.bash # mude a versão do ROS2 conforme necessario
-8. colcon build --packages-select libsick_ldmrs --event-handlers console_direct+
-9. source ./install/setup.bash
-10. colcon build --packages-select sick_scan_xd --cmake-args " -DROS_VERSION=2" --event-handlers console_direct+
-11. source ./install/setup.bash
-12. colcon build
+1.```
+cd lidar2d/src
+git clone https://github.com/SICKAG/libsick_ldmrs.git
+git clone -b master https://github.com/SICKAG/sick_scan_xd.git
+```
+5. popd
+6. rm -rf ./build ./build_isolated/ ./devel ./devel_isolated/ ./install ./install_isolated/ ./log/
+7. cd ..
+8. source /opt/ros/iron/setup.bash # mude a versão do ROS2 conforme necessario
+9. colcon build --packages-select libsick_ldmrs --event-handlers console_direct+
+10. source ./install/setup.bash
+11. colcon build --packages-select sick_scan_xd --cmake-args " -DROS_VERSION=2" --event-handlers console_direct+
+12. source ./install/setup.bash
+13. colcon build
 
   Para testar o pacote basta usar o comando: 
   # ros2 launch sick_scan_xd sick_lms_1xx.launch.py hostname:=192.168.1.64 
