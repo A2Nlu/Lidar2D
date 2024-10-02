@@ -11,7 +11,9 @@ A estrutura do repositório deve seguir o seguinte formato:
 lidar2d/ 
 │
 ├── src/
+
 │   ├── lidar_pkg/
+
 │   │   ├── include/
 │   │   ├── msg/
 │   │   │   └── Objeto.msg
