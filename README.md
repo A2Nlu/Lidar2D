@@ -45,7 +45,7 @@ lidar2d/
 └── README.md
 
 ## 3. Pacote da SICK
-Para a comunicação com o LIDAR2D e recebimento dos dados, foi utilizado o pacote disponibilizado pela SICK. Para mais informações sobre o pacote acessar o reporsitorio da [SICK](https://github.com/SICKAG/sick_scan_xd/blob/develop/INSTALL-ROS2.md#build-on-linux-ros2), ou seguir os seguintes passos:
+Para a comunicação com o LIDAR2D e recebimento dos dados, foi utilizado o pacote disponibilizado pela SICK. Para mais informações sobre o pacote acessar o reporsitorio da [SICK](https://github.com/SICKAG/sick_scan_xd?tab=readme-ov-file), ou seguir os seguintes passos:
 
 ```bash
 cd lidar2d/src
@@ -67,4 +67,13 @@ Para testar o pacote basta usar o comando:
 ```bash
 ros2 launch sick_scan_xd sick_lms_1xx.launch.py hostname:=192.168.1.64 
 ```
+Apos iniciar, nos topicos do ros2 deve conter:
+
+***** add uma imagem
+
 ## 4. lidar_pkg
+
+  # 1. Instalação 
+  
+
+
