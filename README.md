@@ -50,7 +50,7 @@ lidar2d/
 cd lidar2d/src
 git clone https://github.com/SICKAG/libsick_ldmrs.git
 git clone -b master https://github.com/SICKAG/sick_scan_xd.git
-  ```
+  `
 5. popd
 6. rm -rf ./build ./build_isolated/ ./devel ./devel_isolated/ ./install ./install_isolated/ ./log/
 7. cd ..
