@@ -45,7 +45,7 @@ lidar2d/
 └── README.md
 
 ## 3. Pacote da SICK
-Para a comunicação com o LIDAR2D e recebimento dos dados, foi utilizado o pacote disponibilizado pela SICK. Para a sua instalação, pode-se acessar: [link para instalação](https://github.com/SICKAG/sick_scan_xd/blob/develop/INSTALL-ROS2.md#build-on-linux-ros2), ou seguir os seguintes passos:
+Para a comunicação com o LIDAR2D e recebimento dos dados, foi utilizado o pacote disponibilizado pela SICK. Para mais informações sobre o pacote acessar o reporsitorio da [SICK](https://github.com/SICKAG/sick_scan_xd/blob/develop/INSTALL-ROS2.md#build-on-linux-ros2), ou seguir os seguintes passos:
 
 ```bash
 cd lidar2d/src
