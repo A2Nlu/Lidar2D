@@ -46,11 +46,10 @@ lidar2d/
 
 ## 3. Pacote da SICK
   Para a comunição com o LIDAR2D e recebimento dos dados, foi utilizado o pacote dispolibilizado pela SICK, para a sua instalação pode-se acessar: https://github.com/SICKAG/sick_scan_xd/blob/develop/INSTALL-ROS2.md#build-on-linux-ros2, ou seguiur os seguintes passos:
-1.```
-cd lidar2d/src
+  
+```cd lidar2d/src
 git clone https://github.com/SICKAG/libsick_ldmrs.git
-git clone -b master https://github.com/SICKAG/sick_scan_xd.git
-  `
+git clone -b master https://github.com/SICKAG/sick_scan_xd.git ```
 5. popd
 6. rm -rf ./build ./build_isolated/ ./devel ./devel_isolated/ ./install ./install_isolated/ ./log/
 7. cd ..
