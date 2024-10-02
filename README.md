@@ -60,7 +60,7 @@ source ./install/setup.bash
 colcon build --packages-select sick_scan_xd --cmake-args "-DROS_VERSION=2" --event-handlers console_direct+
 source ./install/setup.bash
 colcon build
-
+```
 
   Para testar o pacote basta usar o comando: 
   # ros2 launch sick_scan_xd sick_lms_1xx.launch.py hostname:=192.168.1.64 
