@@ -61,8 +61,10 @@ colcon build --packages-select sick_scan_xd --cmake-args "-DROS_VERSION=2" --eve
 source ./install/setup.bash
 colcon build
 ```
+OBS: faça o build de cada pacote um por vez, espere terminar para ter certeza de que não deu erro na anterior, colocar para fazer uma seguida da outra de uma vez da erro!
 
-  Para testar o pacote basta usar o comando: 
-  # ros2 launch sick_scan_xd sick_lms_1xx.launch.py hostname:=192.168.1.64 
-
+Para testar o pacote basta usar o comando: 
+```bash
+ros2 launch sick_scan_xd sick_lms_1xx.launch.py hostname:=192.168.1.64 
+```
 ## 4. lidar_pkg
