@@ -91,4 +91,28 @@ lidar2d/
   
   ![Nuvem de pontos Lidar2D](videos/rviz.gif)
 
-  ### 3. Iniciar o codigo.
+  ### 3. Iniciar a aplicação.
+  Os passos seguintes não informam a inicialização da câmera, pois conta que tal ja esta funcionando e publicando mensagens em um tópico ros.
+  
+  Inicie primeiramente o lidar:
+  ```bash
+  ros2 launch sick_scan_xd sick_lms_1xx.launch.py hostname:=192.168.1.64 
+  ```
+  Depois o script da fusão
+  ```bash
+  ros2 run lidar_pkg Lidar_camera_objetos.py
+  ```
+  Apos iniciar os codigos, nos topicos do ros deve-se ter os do lidar mencionados no item anterior, e os da fusão que são:
+  1. /scan_filtred - Publica as distancias filtradas 
+  2. /range_ang - Publica as distancias com seus respectivos ângulos 
+  3. /objetos_lidar_camera - Publica as informações dos obejtos detectados
+  4. /aviso_lidar_camera - Publica um aviso quando o lidar ou a câmera param de mandar informações
+
+  ### 4. Tópico /aviso_lidar_camera
+
+  | Tipo da Variável | Mensagem                              | O que é                                          |
+  |------------------|---------------------------------------|--------------------------------------------------|
+  | String           | Falha ao receber dados do lidar       | Aviso caso o lidar pare de mandar informações    |
+  | String           | Falha ao receber dados da câmera      | Aviso caso a câmera pare de mandar informações   |
+
+  
