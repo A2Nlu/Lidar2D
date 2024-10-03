@@ -84,6 +84,11 @@ Para testar o pacote basta usar o comando:
 ros2 launch sick_scan_xd sick_lms_1xx.launch.py hostname:=192.168.1.64 
 ```
 Apos iniciar, nos topicos do ros2 deve conter:
+![Topicos Lidar](imagens/topicosLidar.jpg)
+
+Recomendavel verificar pelo rviz2 a nuvem de pontos.
+
+![Nuvem de pontos Lidar2D](videos/rviz.gif)
 
 ***** add uma imagem
 
