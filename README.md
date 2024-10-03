@@ -140,7 +140,7 @@ lidar2d/
   | Túnel 4 (T4)(30 – 40 metros)                                 | 2     |
   | Laterais (LE/LD)(maior que a largura do caminhão, 3 metros)  | 1     |
 
-  ****colocar as imagens
+  ****colocar a imagem ilustrativa da frente do caminhão**
 
   Quando o tópico recebe as mensagens, elas podem ter: 
   1. Objetos captados pelo lidar, mas não pela câmera;
@@ -158,4 +158,6 @@ lidar2d/
   | **risco:** 5                    | **risco:** 0                | **risco:** 4                  |
   | **tipo:** desconhecido          | **tipo:** chair             | **tipo:** Person              |
 
-  ***add um gif
+  ***add um gif da publicação no topico com a ros bag coletada**
+
+  ### 6. Envio das mensagens dos objetos detectados via CAN
