@@ -60,7 +60,7 @@ lidar2d/
 
   ![linha a se comentar para o primeiro build](imagens/comentario.jpg)
 
-## 4. Pacote da SICK
+  ## 2. Pacote da SICK
   Para a comunicação com o LIDAR2D e recebimento dos dados, foi utilizado o pacote disponibilizado pela SICK. Para mais informações sobre o pacote acessar o reporsitorio da [SICK](https://github.com/SICKAG/sick_scan_xd?tab=readme-ov-file), ou seguir os seguintes passos:
 
 ```bash
