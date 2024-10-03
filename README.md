@@ -148,15 +148,15 @@ lidar2d/
   3. Objetos reconhecidos pelo lidar e câmera.
   A tabela a seguir exemplifica os três tipos possiveis da mensagem e o gif de como aparece no terminal. 
   
-  | Somente Lidar                   | Somente Câmera              | Lidar e Câmera                |
-  |---------------------------------|-----------------------------|-------------------------------|
-  | **label:** Tunel 1              | **label:** desconhecido     | **label:** Tunel 2            |
-  | **id:** 8                       | **id:** 3                   | **id:** 10                    |
-  | **distancia_central:** 3.38952  | **distancia_central:** 5.0  | **distancia_central:** 11.875 |
-  | **angulo_central:** -68.5       | **angulo_central:** 58.35   | **angulo_central:** 45.0      |
-  | **tamanho_do_objeto:** 0.5876   | **tamanho_do_objeto:** 0.0  | **tamanho_do_objeto:** 0.3521 |
-  | **risco:** 5                    | **risco:** 0                | **risco:** 4                  |
-  | **tipo:** desconhecido          | **tipo:** chair             | **tipo:** Person              |
+  | Somente Lidar                   | Somente Câmera               | Lidar e Câmera                |
+  |---------------------------------|------------------------------|-------------------------------|
+  | **label:** T1                   | **label:** DE                | **label:** T2                 |
+  | **id:** 8                       | **id:** 3                    | **id:** 10                    |
+  | **distancia_central:** 3389     | **distancia_central:** 5000  | **distancia_central:** 1187   |
+  | **angulo_central:** -68         | **angulo_central:** 58       | **angulo_central:** 45        |
+  | **tamanho_do_objeto:** 587      | **tamanho_do_objeto:** 0     | **tamanho_do_objeto:** 352    |
+  | **risco:** 5                    | **risco:** 0                 | **risco:** 4                  |
+  | **tipo:** desconhecido          | **tipo:** chair              | **tipo:** Person              |
 
   ***add um gif da publicação no topico com a ros bag coletada**
 
