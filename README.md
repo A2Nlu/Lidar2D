@@ -121,7 +121,7 @@ lidar2d/
   
   | Tipo da Variável | Nomenclatura         | O que é                                                          |
   |------------------|----------------------|------------------------------------------------------------------|
-  | string           | label                | Onde o objeto se encontra/localização                            |
+  | string           | label                | Onde o objeto se encontra/localização geográfica                 |
   | int32            | id                   | Número de identificação do objeto                                |
   | float32          | distancia_central    | Distância do centro do objeto em relação ao lidar em milímetros  |
   | float32          | angulo_central       | Ângulo do centro do objeto em relação ao lidar em graus          |
@@ -129,3 +129,33 @@ lidar2d/
   | int32            | risco                | Risco que o objeto apresenta em relação ao caminhão              |
   | string           | tipo                 | Tipo do objeto                                                   |
 
+  A localização geográfica do objeto com seu respectivo risco, esta dividida da seguinte forma em relação a frente do caminhão:
+
+  | Localização Geográfica do Objeto                             | Risco |
+  |--------------------------------------------------------------|-------|
+  | Zona de exclusão (ZE)(até 2 metros)                          | 6     |
+  | Túnel 1 (T1)(2 – 10 metros)                                  | 5     |
+  | Túnel 2 (T2)(10 – 20 metros)                                 | 4     |
+  | Túnel 3 (T3)(20 – 30 metros)                                 | 3     |
+  | Túnel 4 (T4)(30 – 40 metros)                                 | 2     |
+  | Laterais (LE/LD)(maior que a largura do caminhão, 3 metros)  | 1     |
+
+  ****colocar as imagens
+
+  Quando o tópico recebe as mensagens, elas podem ter:  
+  ➢ Objetos captados pelo lidar, mas não pela câmera; 
+  ➢ Objetos detectados pela câmera, mas não captados pelo lidar (neste caso o objeto se encontra a uma altura menor ou maior que a posição que ele se encontra); 
+  ➢ Objetos reconhecidos pelo lidar e câmera. 
+  A tabela a seguir exemplifica os três tipos possiveis da mensagem e o gif de como aparece no terminal. 
+  
+  | Somente Lidar                   | Somente Câmera              | Lidar e Câmera                |
+  |---------------------------------|-----------------------------|-------------------------------|
+  | **label:** Tunel 1              | **label:** desconhecido     | **label:** Tunel 2            |
+  | **id:** 8                       | **id:** 3                   | **id:** 10                    |
+  | **distancia_central:** 3.38952  | **distancia_central:** 5.0  | **distancia_central:** 11.875 |
+  | **angulo_central:** -68.5       | **angulo_central:** 58.35   | **angulo_central:** 45.0      |
+  | **tamanho_do_objeto:** 0.5876   | **tamanho_do_objeto:** 0.0  | **tamanho_do_objeto:** 0.3521 |
+  | **risco:** 5                    | **risco:** 0                | **risco:** 4                  |
+  | **tipo:** desconhecido          | **tipo:** chair             | **tipo:** Person              |
+
+  ***add um gif
