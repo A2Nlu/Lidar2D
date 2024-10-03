@@ -120,11 +120,12 @@ lidar2d/
   Este tópico recebe as mensagens de objetos detectados e estão estruturadas conforme a tabela a seguir:
   
   | Tipo da Variável | Nomenclatura         | O que é                                                          |
-  |------------------|-------------------- -|------------------------------------------------------------------|
+  |------------------|----------------------|------------------------------------------------------------------|
   | string           | label                | Onde o objeto se encontra/localização                            |
   | int32            | id                   | Número de identificação do objeto                                |
-  | float32          | distancia_central    | Distância do centro do objeto em relação ao lidar em milimetros  |
+  | float32          | distancia_central    | Distância do centro do objeto em relação ao lidar em milímetros  |
   | float32          | angulo_central       | Ângulo do centro do objeto em relação ao lidar em graus          |
-  | float32          | tamanho_do_objeto    | Tamanho estimado do objeto encontrado em metros em milimetros    |
+  | float32          | tamanho_do_objeto    | Tamanho estimado do objeto encontrado em metros em milímetros    |
   | int32            | risco                | Risco que o objeto apresenta em relação ao caminhão              |
   | string           | tipo                 | Tipo do objeto                                                   |
+
