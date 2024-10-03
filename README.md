@@ -144,7 +144,9 @@ lidar2d/
 
   Quando o tópico recebe as mensagens, elas podem ter:  
   ➢ Objetos captados pelo lidar, mas não pela câmera; 
-  ➢ Objetos detectados pela câmera, mas não captados pelo lidar (neste caso o objeto se encontra a uma altura menor ou maior que a posição que ele se encontra); 
+  
+  ➢ Objetos detectados pela câmera, mas não captados pelo lidar (neste caso o objeto se encontra a uma altura menor ou maior que a posição que ele se encontra);
+  
   ➢ Objetos reconhecidos pelo lidar e câmera. 
   A tabela a seguir exemplifica os três tipos possiveis da mensagem e o gif de como aparece no terminal. 
   
