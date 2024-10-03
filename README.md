@@ -109,10 +109,22 @@ lidar2d/
   4. /aviso_lidar_camera - Publica um aviso quando o lidar ou a câmera param de mandar informações
 
   ### 4. Tópico /aviso_lidar_camera
+  Neste tópico as mensagens são simples como se observa na Tabela 4, ele serve para quando a câmera ou o Lidar para de mandar informações.
 
   | Tipo da Variável | Mensagem                              | O que é                                          |
   |------------------|---------------------------------------|--------------------------------------------------|
   | String           | Falha ao receber dados do lidar       | Aviso caso o lidar pare de mandar informações    |
   | String           | Falha ao receber dados da câmera      | Aviso caso a câmera pare de mandar informações   |
 
+  ### 5. Tópico /objetos_lidar_camera
+  Este tópico recebe as mensagens de objetos detectados e estão estruturadas conforme a tabela a seguir:
   
+  | Tipo da Variável | Nomenclatura         | O que é                                                          |
+  |------------------|-------------------- -|------------------------------------------------------------------|
+  | string           | label                | Onde o objeto se encontra/localização                            |
+  | int32            | id                   | Número de identificação do objeto                                |
+  | float32          | distancia_central    | Distância do centro do objeto em relação ao lidar em milimetros  |
+  | float32          | angulo_central       | Ângulo do centro do objeto em relação ao lidar em graus          |
+  | float32          | tamanho_do_objeto    | Tamanho estimado do objeto encontrado em metros em milimetros    |
+  | int32            | risco                | Risco que o objeto apresenta em relação ao caminhão              |
+  | string           | tipo                 | Tipo do objeto                                                   |
