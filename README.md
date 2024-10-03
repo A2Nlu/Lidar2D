@@ -48,8 +48,14 @@ lidar2d/
   O pacote lidar_pkg é um package feito para fundir as informações do lidar 2d com os da camera. os testes foram realizados utilizando ROS2 Iron.
   ### 1. Instalação 
   ```bash
-  git clone 
-
+  git clone https://github.com/A2Nlu/Lidar2D.git
+  ```
+    No arquivo CMakeLists.txt comente a linha #`find_package(lidar_pkg REQUIRED)`,   pois para o primeiro build do pacote, essa linha da erro na primeira compilação   do pkg, use o comando:
+  ```bash
+  cd lidar2d
+  colcon build
+  ```
+  para a compilação do pacote, apos o sucesso da compilação descomente a linha       #`find_package(lidar_pkg REQUIRED)` do arquivo CMakeLists.txt e repita a           compilação.
 ## 4. Pacote da SICK
   Para a comunicação com o LIDAR2D e recebimento dos dados, foi utilizado o pacote disponibilizado pela SICK. Para mais informações sobre o pacote acessar o reporsitorio da [SICK](https://github.com/SICKAG/sick_scan_xd?tab=readme-ov-file), ou seguir os seguintes passos:
 
