@@ -142,7 +142,7 @@ lidar2d/
 
   ****colocar a imagem ilustrativa da frente do caminhão**
 
-  Quando o tópico recebe as mensagens, elas podem ter: 
+  Quando o tópico recebe as mensagens, essas mensagens podem ser das seguintes formas: 
   1. Objetos captados pelo lidar, mas não pela câmera;
   2. Objetos detectados pela câmera, mas não captados pelo lidar (neste caso o objeto se encontra a uma altura menor ou maior que a posição que ele se encontra);
   3. Objetos reconhecidos pelo lidar e câmera.
