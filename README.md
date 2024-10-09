@@ -139,7 +139,8 @@ lidar2d/
   | Túnel 3 (T3)(20 – 30 metros)                                 | 3     |
   | Túnel 4 (T4)(30 – 40 metros)                                 | 2     |
   | Laterais (LE/LD)(maior que a largura do caminhão, 3 metros)  | 1     |
-
+  |                            Tabela 3                                  |
+  
   ****colocar a imagem ilustrativa da frente do caminhão**
 
   Quando o tópico recebe as mensagens, essas mensagens podem ser das seguintes formas: 
@@ -169,28 +170,53 @@ lidar2d/
 
 
   ID: Numero atribuido ao objeto
-  Localização: Numero atribuido para as nomenclaturas da localização geografica do objeto: 
+  Localização: Numero atribuido para as nomenclaturas da localização geografica do objeto:
   
-        | Localização   | Numero atribuido |
-        |---------------|------------------|
-        |      ZE       |        10        |
-        |      T1       |        11        |
-        |      T2       |        12        |
-        |      T3       |        13        |
-        |      T4       |        14        |
-        |      LD       |        15        |
-        |      LE       |        16        |
-        | Desconhecido  |        17        |
+  | Localização   | Numero atribuido |
+  |---------------|------------------|
+  |      ZE       |        10        |
+  |      T1       |        11        |
+  |      T2       |        12        |
+  |      T3       |        13        |
+  |      T4       |        14        |
+  |      LD       |        15        |
+  |      LE       |        16        |
+  | Desconhecido  |        17        |
 
-  Distância:
-  Ângulo:
-  Tipo:
+  Distância: Distancia do objeto em milimetros, de 0 á 65535, sendo limitado ate um valor de 40000 pois é a distancia maxima alcançada pelo lidar
+  Ângulo: o angulo é dado em graus, podendo ser positivo ou negativo indo de -128 ate 127
+  Tipo: o tipo do objeto foi separado em objetos fixos (postes, arvores, atc), objetos moveis (Pessoas, caminhão, gato, etc) e objetos desconhecidos (não reconhecido pela camera), os numeros atribuidos foram:
   
-        |     Tipo      | Numero atribuido |
-        |---------------|------------------|
-        |      ZE       |        20        |
-        |      T1       |        21        |
-        |      T2       |        22        |
+  |     Tipo      | Numero atribuido |
+  |---------------|------------------|
+  |      TF       |        20        |
+  |      TM       |        21        |
+  |      TD       |        22        |
         
-  Tamanho:
-  Risco:
+  Tamanho: o tamnho do objeto esta em mm, e é um numero que originalmente foi dividido por 100, para representação em um intervalo de 0 - 255, para se obter o valor do tamanho do objeto detectado basta multiplicar por 100.
+  Risco: risco é um numero de 0 á 6 (tabela 3)
+  
+****colocar uma imagem para demonstrar****
+
+### 7. Arquivo de configuração
+é um arquivo com os parametros principais para o funcionamento adequado do programa. Os paremetros a serem configurados estão na tabela a seguir com os respectivos parametros adotados por padrão. deve-se respeitar as observações para futuras modificações se necessario.
+
+|            Parametro             | Valor | observação
+|----------------------------------|-------|
+|distancia minima                  |  0.1  | A distancia minima nao pode ser menor que 0.1.
+|distancia maxima                  |  40.0 | A distancia maxima nao pode ser maior que 40.
+|distancia maxima zona de exclusao |  5.0  |
+|largura tunel                     |  1.5  | A largura do tunel é a largura da frente do caminhao, deve-se dividir por 2 essa largura. 
+|tunel1 distancia maxima           |  10.0 | Para configurar os tuneis 1, 2, 3 e 4 deve-se considerar o fim do anterior como o inicio do proximo.
+|tunel2 distancia maxima           |  20.0 | 
+|tunel3 distancia maxima           |  30.0 |
+|tunel4 distancia maxima           |  40.0 | Caso queira eliminar o tunel 4 deve-se colocar tunel3 distancia maxima = 40 e tunel4 distancia maxima = 40. e distribuir as distancias nos outros 3 tuneis conforme for necessario.
+|centro do objeto para a camera    |  20.0 | o centro do objeto para a camera deve ser em relacao ao lidar,
+|linha                             |   16  | A linha e a coluna sao para definir a matriz para fusao dos dados lidar - camera a matriz deve ter o numero de linhas igual ao de colunas ex 32x32 16x16 8x8
+|coluna                            |   16  |
+|distancia euclidiana parametro    |  0.4  | a distancia euclidiana é um parametro em metros, o padrao esta para que se os pontos tiverem ate 0.4 metros de distancia entre eles sao o mesmo objeto
+
+Localizado em: lidar2D/src/lidar_pkg/scripts
+arquivo: configuracao.cfg
+
+
