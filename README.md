@@ -201,20 +201,20 @@ lidar2d/
 ### 7. Arquivo de configuração
 é um arquivo com os parametros principais para o funcionamento adequado do programa. Os paremetros a serem configurados estão na tabela a seguir com os respectivos parametros adotados por padrão. deve-se respeitar as observações para futuras modificações se necessario.
 
-|            Parametro             | Valor | observação
-|----------------------------------|-------|
-|distancia minima                  |  0.1  | A distancia minima nao pode ser menor que 0.1.
-|distancia maxima                  |  40.0 | A distancia maxima nao pode ser maior que 40.
-|distancia maxima zona de exclusao |  5.0  |
-|largura tunel                     |  1.5  | A largura do tunel é a largura da frente do caminhao, deve-se dividir por 2 essa largura. 
-|tunel1 distancia maxima           |  10.0 | Para configurar os tuneis 1, 2, 3 e 4 deve-se considerar o fim do anterior como o inicio do proximo.
-|tunel2 distancia maxima           |  20.0 | 
-|tunel3 distancia maxima           |  30.0 |
-|tunel4 distancia maxima           |  40.0 | Caso queira eliminar o tunel 4 deve-se colocar tunel3 distancia maxima = 40 e tunel4 distancia maxima = 40. e distribuir as distancias nos outros 3 tuneis conforme for necessario.
-|centro do objeto para a camera    |  20.0 | o centro do objeto para a camera deve ser em relacao ao lidar,
-|linha                             |   16  | A linha e a coluna sao para definir a matriz para fusao dos dados lidar - camera a matriz deve ter o numero de linhas igual ao de colunas ex 32x32 16x16 8x8
-|coluna                            |   16  |
-|distancia euclidiana parametro    |  0.4  | a distancia euclidiana é um parametro em metros, o padrao esta para que se os pontos tiverem ate 0.4 metros de distancia entre eles sao o mesmo objeto
+|            Parametro             | Valor | observação |
+|----------------------------------|-------|------------|
+|distancia minima                  |  0.1  | A distancia minima nao pode ser menor que 0.1.|
+|distancia maxima                  |  40.0 | A distancia maxima nao pode ser maior que 40.|
+|distancia maxima zona de exclusao |  5.0  |  |
+|largura tunel                     |  1.5  | A largura do tunel é a largura da frente do caminhao, deve-se dividir por 2 essa largura. |
+|tunel1 distancia maxima           |  10.0 | Para configurar os tuneis 1, 2, 3 e 4 deve-se considerar o fim do anterior como o inicio do proximo.|
+|tunel2 distancia maxima           |  20.0 | |
+|tunel3 distancia maxima           |  30.0 ||
+|tunel4 distancia maxima           |  40.0 | Caso queira eliminar o tunel 4 deve-se colocar tunel3 distancia maxima = 40 e tunel4 distancia maxima = 40. e distribuir as distancias nos outros 3 tuneis conforme for necessario.|
+|centro do objeto para a camera    |  20.0 | o centro do objeto para a camera deve ser em relacao ao lidar,|
+|linha                             |   16  | A linha e a coluna sao para definir a matriz para fusao dos dados lidar - camera a matriz deve ter o numero de linhas igual ao de colunas ex 32x32 16x16 8x8|
+|coluna                            |   16  |  |
+|distancia euclidiana parametro    |  0.4  | a distancia euclidiana é um parametro em metros, o padrao esta para que se os pontos tiverem ate 0.4 metros de distancia entre eles sao o mesmo objeto|
 
 Localizado em: lidar2D/src/lidar_pkg/scripts
 arquivo: configuracao.cfg
