@@ -175,8 +175,9 @@ lidar2d/
   | **Dado**  | ID | Localização      | Distância | Ângulo | Tipo   | Tamanho | Risco |
 
 
-  `ID:` Numero atribuido ao objeto
-  `Localização:` Número atribuído para as nomenclaturas da localização geográfica do objeto:
+  *ID:* Numero atribuido ao objeto
+  
+  *Localização:* Número atribuído para as nomenclaturas da localização geográfica do objeto:
   
   | Localização   | Numero atribuido |
   |---------------|------------------|
@@ -189,9 +190,11 @@ lidar2d/
   |      LE       |        16        |
   | Desconhecido  |        17        |
 
-  `Distância:`  Distância do objeto em milímetros, variando de 0 a 65535, sendo limitada a um valor de 40000, pois é a distância máxima alcançada pelo Lidar.
-  `Ângulo:` O ângulo é dado em graus, podendo ser positivo ou negativo, variando de -128 a 127.
-  `Tipo:` O tipo do objeto foi separado em objetos fixos (postes, árvores, etc.), objetos móveis (pessoas, caminhão, gato, etc.) e objetos desconhecidos (não reconhecidos pela câmera). Os números atribuídos foram:
+  *Distância:*  Distância do objeto em milímetros, variando de 0 a 65535, sendo limitada a um valor de 40000, pois é a distância máxima alcançada pelo Lidar.
+  
+  *Ângulo:* O ângulo é dado em graus, podendo ser positivo ou negativo, variando de -128 a 127.
+  
+  *Tipo:* O tipo do objeto foi separado em objetos fixos (postes, árvores, etc.), objetos móveis (pessoas, caminhão, gato, etc.) e objetos desconhecidos (não reconhecidos pela câmera). Os números atribuídos foram:
   
   |     Tipo      | Numero atribuido |
   |---------------|------------------|
@@ -199,8 +202,9 @@ lidar2d/
   |      TM       |        21        |
   |      TD       |        22        |
         
-  `Tamanho:` O tamanho do objeto está em mm e é um número que originalmente foi dividido por 100 para representação em um intervalo de 0 a 255. Para obter o valor do tamanho do objeto detectado, basta multiplicar por 100.
-  `Risco:` risco é um numero de 0 á 6 
+  *Tamanho:* O tamanho do objeto está em mm e é um número que originalmente foi dividido por 100 para representação em um intervalo de 0 a 255. Para obter o valor do tamanho do objeto detectado, basta multiplicar por 100.
+  
+  *Risco:* risco é um numero de 0 á 6 
   
 ****colocar uma imagem para demonstrar****
 
