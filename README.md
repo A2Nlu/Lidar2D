@@ -167,7 +167,7 @@ lidar2d/
   | Túnel 4 (T4)(30 – 40 metros)                                 | 2     |
   | Laterais (LE/LD)(maior que a largura do caminhão, 3 metros)  | 1     |
   
-  ![representação da localização e risco](imagens/localizacao_risco.jpg)
+  ![geografia](imagens/localizacao_risco)
 
   Quando o tópico recebe as mensagens, essas podem ser das seguintes formas:
   
