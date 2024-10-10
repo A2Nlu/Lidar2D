@@ -231,7 +231,7 @@ lidar2d/
   
   |                              |ID  | Localização | Distância | Ângulo | Tipo  | Tamanho | Risco |
   |------------------------------|----|-------------|-----------|--------|-------|---------|-------|
-  |Mensagem CAN codificada       | 05 |      10     |  A4 | 49  |   B1   |  16   |   01    |   01  |
+  |Mensagem CAN codificada       | 05 |      10     |  A4 - 49  |   B1   |  16   |   01    |   01  |
   |Mensagem CAN descodificada    | 05 |      16     |   18852   |  -79   |  22   |   100   |   01  |
 
   OBS. Na distancia a ordem dos bytes importa, para codificar foi usado o metodo ... onde vem primeiro 49 e depois A4 para descodificar.
@@ -247,3 +247,6 @@ OBS. Sempre confira com o comando `ip link` se a pcan é realmente can0
 
 Caso não tenha a interface plugada, o codigo da erro e não roda, importante comentar duas linhas no codigo e recompilar, nesse modo os dados dos objetos serão somente publicados no tópico do ROS. 
 
+![linha a se comentar no codigo](videos/linhaComentar.gif)
+
+![linha a se comentar no codigo](videos/linhaComentar2.gif)
