@@ -229,4 +229,4 @@ lidar2d/
   
   **Risco:** risco é um numero de 0 á 6 
   
-****colocar uma imagem para demonstrar****
+![mensagem CAN](videos/objetos_can.gif)
