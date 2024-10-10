@@ -192,11 +192,11 @@ lidar2d/
   ![exemplo de publicação no topico](videos/objetos.gif)
 
   ### 7. Envio das mensagens dos objetos detectados via CAN
-  Uma opção de recebimento dos dados é via CAN, a uma velocidade de 500 kbit, usando a interface PCAN. Os dados foram codificados para envio no barramento, com um tamanho de 8 bytes, seguindo a seguinte estrutura:
+  Uma opção de recebimento dos dados é via CAN, a uma velocidade de 500 bitrate, usando a interface PCAN. Os dados foram codificados para envio no barramento, com um tamanho de 8 bytes, seguindo a seguinte estrutura:
   
   |Identificador   |0  | 1              | 2 e 3     | 4      | 5      | 6       | 7     |
   |----------------|---|----------------|-----------|--------|--------|---------|-------|
-  |0x18ff3         |ID | Localização    | Distância | Ângulo | Tipo   | Tamanho | Risco |
+  |0x18FF003       |ID | Localização    | Distância | Ângulo | Tipo   | Tamanho | Risco |
 
   **ID:** Numero atribuido ao objeto
   
@@ -229,4 +229,21 @@ lidar2d/
   
   **Risco:** risco é um numero de 0 á 6 
   
+  |                              |ID  | Localização | Distância | Ângulo | Tipo  | Tamanho | Risco |
+  |------------------------------|----|-------------|-----------|--------|-------|---------|-------|
+  |Mensagem CAN codificada       | 05 |      10     |  A4 | 49  |   B1   |  16   |   01    |   01  |
+  |Mensagem CAN descodificada    | 05 |      16     |   18852   |  -79   |  22   |   100   |   01  |
+
+  OBS. Na distancia a ordem dos bytes importa, para codificar foi usado o metodo ... onde vem primeiro 49 e depois A4 para descodificar.
+  
 ![mensagem CAN](videos/objetos_can.gif)
+
+
+ No terminal e importante acionar a Pcan, use o comando:
+ ```bash
+ sudo ip link set can0 up type can bitrate 500000 
+ ```
+OBS. Sempre confira com o comando `ip link` se a pcan é realmente can0
+
+Caso não tenha a interface plugada, o codigo da erro e não roda, importante comentar duas linhas no codigo e recompilar, nesse modo os dados dos objetos serão somente publicados no tópico do ROS. 
+
