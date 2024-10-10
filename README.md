@@ -5,8 +5,9 @@
 Este repositório apresenta um projeto de fusão de dados do LiDAR 2D com informações de uma câmera, utilizando ROS2, visando integrar os objetos reconhecidos pelo LiDAR às classificações obtidas pela câmera. O objetivo é aprimorar a detecção e identificação de objetos em ambientes complexos, combinando as vantagens de ambas as tecnologias.
 
 ## 2. Estrutura de Pastas
-Este Reporsitorio comtem somente o PKG da fusão dos dados do lidar e da camera. Os dados do lidar é proveniente de uma biblioteca da sick, e os da camera vem de um topico explicado em um outro reporsitorio. 
-Sendo assim a estrutura a seguir é como deve ficar a workspace referente ao lidar2D.
+Este repositório contém somente o pacote (PKG) da fusão dos dados do LiDAR e da câmera. Os dados do LiDAR são provenientes de uma biblioteca da Sick, e os dados da câmera vêm de um tópico explicado em outro repositório.
+
+A estrutura a seguir é como deve ficar a workspace referente ao Lidar2D.
 
 lidar2d/
 
@@ -45,24 +46,24 @@ lidar2d/
 └── README.md
 
 ## 3. lidar_pkg
-  O pacote lidar_pkg é um package feito para fundir as informações do lidar 2d com os da camera. os testes foram realizados utilizando ROS2 Iron.
+  O pacote lidar_pkg é um pacote feito para fundir as informações do LiDAR 2D com as da câmera. Os testes foram realizados utilizando ROS2 Iron.
   ### 1. Instalação 
   ```bash
   git clone https://github.com/A2Nlu/Lidar2D.git
   ```
-  No arquivo CMakeLists.txt comente a linha `find_package(lidar_pkg REQUIRED)`,   pois para o primeiro build do pacote essa linha da erro na compilação do pkg. Use o comando:
+  No arquivo `CMakeLists.txt`, comente a linha `find_package(lidar_pkg REQUIRED)`, pois para o primeiro build do pacote essa linha gera erro na compilação. Use o comando:
     
   ```bash
   cd lidar2d
   colcon build
   ```
-  para a compilação do pacote, apos o sucesso da compilação descomente a linha `find_package(lidar_pkg REQUIRED)` do arquivo CMakeLists.txt e repita a compilação.
+  Apos o sucesso da compilação, descomente a linha `find_package(lidar_pkg REQUIRED)` do arquivo CMakeLists.txt e repita a compilação.
 
   ![linha a se comentar para o primeiro build](imagens/comentario.jpg)
 
   ### 2. Pacote da SICK
-  Para a comunicação com o LIDAR2D e recebimento dos dados, foi utilizado o pacote disponibilizado pela SICK. Para mais informações sobre o pacote acessar o reporsitorio da [SICK](https://github.com/SICKAG/sick_scan_xd?tab=readme-ov-file), ou seguir os seguintes passos:
-
+  Para a comunicação com o LIDAR2D e o recebimento dos dados, foi utilizado o pacote disponibilizado pela SICK. Você pode seguir os seguintes passos para a instalação do pacote usado:
+  
   ```bash
   cd lidar2d/src
   git clone https://github.com/SICKAG/libsick_ldmrs.git
@@ -77,22 +78,25 @@ lidar2d/
   source ./install/setup.bash
   colcon build
   ```
-  OBS: faça o build de cada pacote um por vez, espere terminar para ter certeza de que não deu erro na anterior, colocar para fazer uma seguida da outra de uma vez da erro!
+  OBS: Faça o build de cada pacote um por vez, esperando terminar para ter certeza de que não houve erro na anterior. Tentar compilar todos de uma vez pode causar erros!
   
-  Para testar o pacote basta usar o comando: 
+  Para testar o pacote, basta usar o comando:
+  
   ```bash
   ros2 launch sick_scan_xd sick_lms_1xx.launch.py hostname:=192.168.1.64 
   ```
-  Apos iniciar, nos topicos do ros2 deve conter:
+  Após iniciar, nos tópicos do ROS2 devem estar presentes:
   
   ![Topicos Lidar](imagens/topicosLidar.jpg)
   
-  Recomendavel verificar pelo rviz2 a nuvem de pontos.
+  Recomendável verificar pelo RViz2 a nuvem de pontos.
   
   ![Nuvem de pontos Lidar2D](videos/rviz.gif)
 
+  Para mais informações sobre o pacote, acesse o reporsitorio da [SICK](https://github.com/SICKAG/sick_scan_xd?tab=readme-ov-file).
+
   ### 3. Iniciar a aplicação.
-  Os passos seguintes não informam a inicialização da câmera, pois conta que tal ja esta funcionando e publicando mensagens em um tópico ros.
+  Os passos a seguir não informam a inicialização da câmera, pois supõem que ela já está funcionando e publicando mensagens em um tópico ROS.
   
   Inicie primeiramente o lidar:
   ```bash
@@ -102,18 +106,19 @@ lidar2d/
   ```bash
   ros2 run lidar_pkg Lidar_camera_objetos.py
   ```
-  Apos iniciar os codigos, nos topicos do ros deve-se ter os do lidar mencionados no item anterior, e os da fusão que são:
+ Após iniciar os códigos, nos tópicos do ROS devem aparecer os do LiDAR mencionados no item anterior e os da fusão, que são:
+ 
   1. /scan_filtred - Publica as distancias filtradas 
   2. /range_ang - Publica as distancias com seus respectivos ângulos 
   3. /objetos_lidar_camera - Publica as informações dos obejtos detectados
   4. /aviso_lidar_camera - Publica um aviso quando o lidar ou a câmera param de mandar informações
 
   ### 4. Tópico /aviso_lidar_camera
-  Neste tópico as mensagens são simples como se observa na Tabela 4, ele serve para quando a câmera ou o Lidar para de mandar informações.
+  Neste tópico, as mensagens são simples, como se observa na Tabela a seguir. Ele serve para quando a câmera ou o Lidar param de enviar informações.
 
   | Tipo da Variável | Mensagem                              | O que é                                          |
   |------------------|---------------------------------------|--------------------------------------------------|
-  | String           | Falha ao receber dados do lidar       | Aviso caso o lidar pare de mandar informações    |
+  | String           | Falha ao receber dados do lidar       | Aviso caso o Lidar pare de mandar informações    |
   | String           | Falha ao receber dados da câmera      | Aviso caso a câmera pare de mandar informações   |
 
   ### 5. Tópico /objetos_lidar_camera
@@ -123,13 +128,13 @@ lidar2d/
   |------------------|----------------------|------------------------------------------------------------------|
   | string           | label                | Onde o objeto se encontra/localização geográfica                 |
   | int32            | id                   | Número de identificação do objeto                                |
-  | float32          | distancia_central    | Distância do centro do objeto em relação ao lidar em milímetros  |
-  | float32          | angulo_central       | Ângulo do centro do objeto em relação ao lidar em graus          |
-  | float32          | tamanho_do_objeto    | Tamanho estimado do objeto encontrado em metros em milímetros    |
+  | float32          | distancia_central    | Distância do centro do objeto em relação ao Lidar, em milímetros |
+  | float32          | angulo_central       | Ângulo do centro do objeto em relação ao Lidar, em graus         |
+  | float32          | tamanho_do_objeto    | Tamanho estimado do objeto encontrado, em milímetros             |
   | int32            | risco                | Risco que o objeto apresenta em relação ao caminhão              |
   | string           | tipo                 | Tipo do objeto                                                   |
 
-  A localização geográfica do objeto com seu respectivo risco, esta dividida da seguinte forma em relação a frente do caminhão:
+  A localização geográfica do objeto, juntamente com seu respectivo risco, está dividida da seguinte forma em relação à frente do caminhão:
 
   | Localização Geográfica do Objeto                             | Risco |
   |--------------------------------------------------------------|-------|
@@ -139,15 +144,16 @@ lidar2d/
   | Túnel 3 (T3)(20 – 30 metros)                                 | 3     |
   | Túnel 4 (T4)(30 – 40 metros)                                 | 2     |
   | Laterais (LE/LD)(maior que a largura do caminhão, 3 metros)  | 1     |
-  |                            Tabela 3                                  |
   
   ****colocar a imagem ilustrativa da frente do caminhão**
 
-  Quando o tópico recebe as mensagens, essas mensagens podem ser das seguintes formas: 
+  Quando o tópico recebe as mensagens, essas podem ser das seguintes formas:
+  
   1. Objetos captados pelo lidar, mas não pela câmera;
-  2. Objetos detectados pela câmera, mas não captados pelo lidar (neste caso o objeto se encontra a uma altura menor ou maior que a posição que ele se encontra);
-  3. Objetos reconhecidos pelo lidar e câmera.
-  A tabela a seguir exemplifica os três tipos possiveis da mensagem e o gif de como aparece no terminal. 
+  2. Objetos detectados pela câmera, mas não captados pelo Lidar (neste caso, o objeto se encontra a uma altura menor ou maior do que a posição em que ele se encontra);
+  3. Objetos reconhecidos tanto pelo Lidar quanto pela câmera.
+     
+  A tabela a seguir exemplifica os três tipos possíveis de mensagem, além de um GIF que mostra como elas aparecem no terminal. 
   
   | Somente Lidar                   | Somente Câmera               | Lidar e Câmera                |
   |---------------------------------|------------------------------|-------------------------------|
@@ -162,15 +168,15 @@ lidar2d/
   ***add um gif da publicação no topico com a ros bag coletada**
 
   ### 6. Envio das mensagens dos objetos detectados via CAN
-  Uma opção de de recebimentos dos dados é via CAN, a uma velocidade de 500kbit, usando a interface Pcan. Os dados foram codificados para envio no barramento no tamanho de 8 bytes, seguindo a seguinte estrutura:
+  Uma opção de recebimento dos dados é via CAN, a uma velocidade de 500 kbit, usando a interface PCAN. Os dados foram codificados para envio no barramento, com um tamanho de 8 bytes, seguindo a seguinte estrutura:
   
   | **Bit**   | 0  | 1                | 2 e 3     | 4      | 5      | 6       | 7     |
   |-----------|----|------------------|-----------|--------|--------|---------|-------|
   | **Dado**  | ID | Localização      | Distância | Ângulo | Tipo   | Tamanho | Risco |
 
 
-  ID: Numero atribuido ao objeto
-  Localização: Numero atribuido para as nomenclaturas da localização geografica do objeto:
+  `ID:` Numero atribuido ao objeto
+  `Localização:` Número atribuído para as nomenclaturas da localização geográfica do objeto:
   
   | Localização   | Numero atribuido |
   |---------------|------------------|
@@ -183,9 +189,9 @@ lidar2d/
   |      LE       |        16        |
   | Desconhecido  |        17        |
 
-  Distância: Distancia do objeto em milimetros, de 0 á 65535, sendo limitado ate um valor de 40000 pois é a distancia maxima alcançada pelo lidar
-  Ângulo: o angulo é dado em graus, podendo ser positivo ou negativo indo de -128 ate 127
-  Tipo: o tipo do objeto foi separado em objetos fixos (postes, arvores, atc), objetos moveis (Pessoas, caminhão, gato, etc) e objetos desconhecidos (não reconhecido pela camera), os numeros atribuidos foram:
+  `Distância:`  Distância do objeto em milímetros, variando de 0 a 65535, sendo limitada a um valor de 40000, pois é a distância máxima alcançada pelo Lidar.
+  `Ângulo:` O ângulo é dado em graus, podendo ser positivo ou negativo, variando de -128 a 127.
+  `Tipo:` O tipo do objeto foi separado em objetos fixos (postes, árvores, etc.), objetos móveis (pessoas, caminhão, gato, etc.) e objetos desconhecidos (não reconhecidos pela câmera). Os números atribuídos foram:
   
   |     Tipo      | Numero atribuido |
   |---------------|------------------|
@@ -193,28 +199,28 @@ lidar2d/
   |      TM       |        21        |
   |      TD       |        22        |
         
-  Tamanho: o tamnho do objeto esta em mm, e é um numero que originalmente foi dividido por 100, para representação em um intervalo de 0 - 255, para se obter o valor do tamanho do objeto detectado basta multiplicar por 100.
-  Risco: risco é um numero de 0 á 6 (tabela 3)
+  `Tamanho:` O tamanho do objeto está em mm e é um número que originalmente foi dividido por 100 para representação em um intervalo de 0 a 255. Para obter o valor do tamanho do objeto detectado, basta multiplicar por 100.
+  `Risco:` risco é um numero de 0 á 6 
   
 ****colocar uma imagem para demonstrar****
 
 ### 7. Arquivo de configuração
-é um arquivo com os parametros principais para o funcionamento adequado do programa. Os paremetros a serem configurados estão na tabela a seguir com os respectivos parametros adotados por padrão. deve-se respeitar as observações para futuras modificações se necessario.
+Este é um arquivo com os parâmetros principais para o funcionamento adequado do programa. Os parâmetros a serem configurados estão na tabela a seguir, com os respectivos valores adotados por padrão. Deve-se respeitar as observações para futuras modificações, se necessário.
 
 |            Parametro             | Valor | observação |
 |----------------------------------|-------|------------|
-|distancia minima                  |  0.1  | A distancia minima nao pode ser menor que 0.1.|
-|distancia maxima                  |  40.0 | A distancia maxima nao pode ser maior que 40.|
-|distancia maxima zona de exclusao |  5.0  | é uma distancia critica proxima ao caminhão, os objetos nessa area representam algum tipo de perigo e tal deve parar.|
-|largura tunel                     |  1.5  | A largura do tunel é a largura da frente do caminhao, deve-se dividir por 2 essa largura. |
-|tunel1 distancia maxima           |  10.0 | Para configurar os tuneis 1, 2, 3 e 4 deve-se considerar o fim do anterior como o inicio do proximo.|
+|distancia minima                  |  0.1  | A distância mínima não pode ser menor que 0.1.|
+|distancia maxima                  |  40.0 | A distância máxima não pode ser maior que 40. |
+|distancia maxima zona de exclusao |  5.0  | É uma distância crítica próxima ao caminhão; os objetos nessa área representam algum tipo de perigo e devem ser considerados.|
+|largura tunel                     |  1.5  | A largura do túnel é a largura da frente do caminhão (adotado 3 metros); deve-se dividir por 2 essa largura. |
+|tunel1 distancia maxima           |  10.0 | Para configurar os túneis 1, 2, 3 e 4, deve-se considerar o fim do anterior como o início do próximo.|
 |tunel2 distancia maxima           |  20.0 | |
 |tunel3 distancia maxima           |  30.0 ||
-|tunel4 distancia maxima           |  40.0 | Caso queira eliminar o tunel 4 deve-se colocar tunel3 distancia maxima = 40 e tunel4 distancia maxima = 40. e distribuir as distancias nos outros 3 tuneis conforme for necessario.|
-|centro do objeto para a camera    |  20.0 | o centro do objeto para a camera deve ser em relacao ao lidar, o parametro é um valor em metros da distancia de um objeto ate o lidar onde a altura que o feixe do lidar pega no objeto deve-se coincidir o centro da imagem.|
-|linha                             |   16  | A linha e a coluna sao para definir a matriz para fusao dos dados lidar - camera a matriz deve ter o numero de linhas igual ao de colunas ex 32x32 16x16 8x8|
+|tunel4 distancia maxima           |  40.0 | Caso queira eliminar o túnel 4, deve-se igualar a distância máxima dos túneis 3 e 4, distribuindo as distâncias nos outros 3 túneis conforme necessário. O ultimo tunel tem o mesmo valor da distancia maxima|
+|centro do objeto para a camera    |  20.0 | O centro do objeto para a câmera deve ser em relação ao Lidar; este parâmetro é um valor em metros da distância de um objeto até o Lidar, onde a altura que o feixe do Lidar pega no objeto deve coincidir com o centro da imagem.|
+|linha                             |   16  |A linha e a coluna são para definir a matriz para fusão dos dados do Lidar e da câmera; a matriz deve ter o número de linhas igual ao de colunas (ex: 32x32, 16x16, 8x8).|
 |coluna                            |   16  |  |
-|distancia euclidiana parametro    |  0.4  | a distancia euclidiana é um parametro em metros, o padrao esta para que se os pontos tiverem ate 0.4 metros de distancia entre eles sao o mesmo objeto|
+|distancia euclidiana parametro    |  0.4  | A distância euclidiana é um parâmetro em metros; o padrão está configurado para que, se os pontos tiverem até 0.4 metros de distância entre eles, sejam considerados o mesmo objeto.|
 
 Localizado em: lidar2D/src/lidar_pkg/scripts
 
