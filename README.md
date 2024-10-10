@@ -103,7 +103,7 @@ lidar2d/
   |distancia minima                  |  0.1  | A distância mínima não pode ser menor que 0.1.|
   |distancia maxima                  |  40.0 | A distância máxima não pode ser maior que 40. |
   |distancia maxima zona de exclusao |  5.0  | É uma distância crítica próxima ao caminhão; os objetos nessa área representam algum tipo de perigo e devem ser considerados.|
-  |largura tunel                     |  1.5  | A largura do túnel é a largura da frente do caminhão (adotado 3 metros); deve-se dividir por 2 essa largura. |
+  |largura tunel                     |  1.5  | A largura do túnel é a largura da frente do caminhão; deve-se dividir por 2 essa largura. |
   |tunel1 distancia maxima           |  10.0 | Para configurar os túneis 1, 2, 3 e 4, deve-se considerar o fim do anterior como o início do próximo.|
   |tunel2 distancia maxima           |  20.0 | |
   |tunel3 distancia maxima           |  30.0 ||
