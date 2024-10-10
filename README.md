@@ -192,10 +192,9 @@ lidar2d/
   ### 7. Envio das mensagens dos objetos detectados via CAN
   Uma opção de recebimento dos dados é via CAN, a uma velocidade de 500 kbit, usando a interface PCAN. Os dados foram codificados para envio no barramento, com um tamanho de 8 bytes, seguindo a seguinte estrutura:
   
-  | **Bit**   | 0  | 1                | 2 e 3     | 4      | 5      | 6       | 7     |
-  |-----------|----|------------------|-----------|--------|--------|---------|-------|
-  | **Dado**  | ID | Localização      | Distância | Ângulo | Tipo   | Tamanho | Risco |
-
+  |Identificador   |0  | 1              | 2 e 3     | 4      | 5      | 6       | 7     |
+  |----------------|---|----------------|-----------|--------|--------|---------|-------|
+  |0x18ff3         |ID | Localização    | Distância | Ângulo | Tipo   | Tamanho | Risco |
 
   **ID:** Numero atribuido ao objeto
   
