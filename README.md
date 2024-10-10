@@ -95,7 +95,29 @@ lidar2d/
 
   Para mais informações sobre o pacote, acesse o reporsitorio da [SICK](https://github.com/SICKAG/sick_scan_xd?tab=readme-ov-file).
 
-  ### 3. Iniciar a aplicação.
+  ### 3. Arquivo de configuração
+  Este é um arquivo com os parâmetros principais para o funcionamento adequado do programa. Os parâmetros a serem configurados estão na tabela a seguir, com os respectivos valores adotados por padrão. Deve-se respeitar as observações para futuras modificações, se necessário.
+  
+  |            Parametro             | Valor | observação |
+  |----------------------------------|-------|------------|
+  |distancia minima                  |  0.1  | A distância mínima não pode ser menor que 0.1.|
+  |distancia maxima                  |  40.0 | A distância máxima não pode ser maior que 40. |
+  |distancia maxima zona de exclusao |  5.0  | É uma distância crítica próxima ao caminhão; os objetos nessa área representam algum tipo de perigo e devem ser considerados.|
+  |largura tunel                     |  1.5  | A largura do túnel é a largura da frente do caminhão (adotado 3 metros); deve-se dividir por 2 essa largura. |
+  |tunel1 distancia maxima           |  10.0 | Para configurar os túneis 1, 2, 3 e 4, deve-se considerar o fim do anterior como o início do próximo.|
+  |tunel2 distancia maxima           |  20.0 | |
+  |tunel3 distancia maxima           |  30.0 ||
+  |tunel4 distancia maxima           |  40.0 | Caso queira eliminar o túnel 4, deve-se igualar a distância máxima dos túneis 3 e 4, distribuindo as distâncias nos outros 3 túneis conforme necessário. O ultimo tunel tem o mesmo valor da distancia maxima|
+  |centro do objeto para a camera    |  20.0 | O centro do objeto para a câmera deve ser em relação ao Lidar; este parâmetro é um valor em metros da distância de um objeto até o Lidar, onde a altura que o feixe do Lidar pega no objeto deve coincidir com o centro da imagem.|
+  |linha                             |   16  |A linha e a coluna são para definir a matriz para fusão dos dados do Lidar e da câmera; a matriz deve ter o número de linhas igual ao de colunas (ex: 32x32, 16x16, 8x8).|
+  |coluna                            |   16  |  |
+  |distancia euclidiana parametro    |  0.4  | A distância euclidiana é um parâmetro em metros; o padrão está configurado para que, se os pontos tiverem até 0.4 metros de distância entre eles, sejam considerados o mesmo objeto.|
+  
+  Localizado em: lidar2D/src/lidar_pkg/scripts
+  
+  arquivo: configuracao.cfg
+
+  ### 4. Iniciar a aplicação.
   Os passos a seguir não informam a inicialização da câmera, pois supõem que ela já está funcionando e publicando mensagens em um tópico ROS.
   
   Inicie primeiramente o lidar:
@@ -113,7 +135,7 @@ lidar2d/
   3. /objetos_lidar_camera - Publica as informações dos obejtos detectados
   4. /aviso_lidar_camera - Publica um aviso quando o lidar ou a câmera param de mandar informações
 
-  ### 4. Tópico /aviso_lidar_camera
+  ### 5. Tópico /aviso_lidar_camera
   Neste tópico, as mensagens são simples, como se observa na Tabela a seguir. Ele serve para quando a câmera ou o Lidar param de enviar informações.
 
   | Tipo da Variável | Mensagem                              | O que é                                          |
@@ -121,7 +143,7 @@ lidar2d/
   | String           | Falha ao receber dados do lidar       | Aviso caso o Lidar pare de mandar informações    |
   | String           | Falha ao receber dados da câmera      | Aviso caso a câmera pare de mandar informações   |
 
-  ### 5. Tópico /objetos_lidar_camera
+  ### 6. Tópico /objetos_lidar_camera
   Este tópico recebe as mensagens de objetos detectados e estão estruturadas conforme a tabela a seguir:
   
   | Tipo da Variável | Nomenclatura         | O que é                                                          |
@@ -167,7 +189,7 @@ lidar2d/
 
   ***add um gif da publicação no topico com a ros bag coletada**
 
-  ### 6. Envio das mensagens dos objetos detectados via CAN
+  ### 7. Envio das mensagens dos objetos detectados via CAN
   Uma opção de recebimento dos dados é via CAN, a uma velocidade de 500 kbit, usando a interface PCAN. Os dados foram codificados para envio no barramento, com um tamanho de 8 bytes, seguindo a seguinte estrutura:
   
   | **Bit**   | 0  | 1                | 2 e 3     | 4      | 5      | 6       | 7     |
@@ -175,9 +197,9 @@ lidar2d/
   | **Dado**  | ID | Localização      | Distância | Ângulo | Tipo   | Tamanho | Risco |
 
 
-  *ID:* Numero atribuido ao objeto
+  **ID:** Numero atribuido ao objeto
   
-  *Localização:* Número atribuído para as nomenclaturas da localização geográfica do objeto:
+  **Localização:** Número atribuído para as nomenclaturas da localização geográfica do objeto:
   
   | Localização   | Numero atribuido |
   |---------------|------------------|
@@ -190,11 +212,11 @@ lidar2d/
   |      LE       |        16        |
   | Desconhecido  |        17        |
 
-  *Distância:*  Distância do objeto em milímetros, variando de 0 a 65535, sendo limitada a um valor de 40000, pois é a distância máxima alcançada pelo Lidar.
+  **Distância:**  Distância do objeto em milímetros, variando de 0 a 65535, sendo limitada a um valor de 40000, pois é a distância máxima alcançada pelo Lidar.
   
-  *Ângulo:* O ângulo é dado em graus, podendo ser positivo ou negativo, variando de -128 a 127.
+  **Ângulo:** O ângulo é dado em graus, podendo ser positivo ou negativo, variando de -128 a 127.
   
-  *Tipo:* O tipo do objeto foi separado em objetos fixos (postes, árvores, etc.), objetos móveis (pessoas, caminhão, gato, etc.) e objetos desconhecidos (não reconhecidos pela câmera). Os números atribuídos foram:
+  **Tipo:** O tipo do objeto foi separado em objetos fixos (postes, árvores, etc.), objetos móveis (pessoas, caminhão, gato, etc.) e objetos desconhecidos (não reconhecidos pela câmera). Os números atribuídos foram:
   
   |     Tipo      | Numero atribuido |
   |---------------|------------------|
@@ -202,32 +224,8 @@ lidar2d/
   |      TM       |        21        |
   |      TD       |        22        |
         
-  *Tamanho:* O tamanho do objeto está em mm e é um número que originalmente foi dividido por 100 para representação em um intervalo de 0 a 255. Para obter o valor do tamanho do objeto detectado, basta multiplicar por 100.
+  **Tamanho:** O tamanho do objeto está em mm e é um número que originalmente foi dividido por 100 para representação em um intervalo de 0 a 255. Para obter o valor do tamanho do objeto detectado, basta multiplicar por 100.
   
-  *Risco:* risco é um numero de 0 á 6 
+  **Risco:** risco é um numero de 0 á 6 
   
 ****colocar uma imagem para demonstrar****
-
-### 7. Arquivo de configuração
-Este é um arquivo com os parâmetros principais para o funcionamento adequado do programa. Os parâmetros a serem configurados estão na tabela a seguir, com os respectivos valores adotados por padrão. Deve-se respeitar as observações para futuras modificações, se necessário.
-
-|            Parametro             | Valor | observação |
-|----------------------------------|-------|------------|
-|distancia minima                  |  0.1  | A distância mínima não pode ser menor que 0.1.|
-|distancia maxima                  |  40.0 | A distância máxima não pode ser maior que 40. |
-|distancia maxima zona de exclusao |  5.0  | É uma distância crítica próxima ao caminhão; os objetos nessa área representam algum tipo de perigo e devem ser considerados.|
-|largura tunel                     |  1.5  | A largura do túnel é a largura da frente do caminhão (adotado 3 metros); deve-se dividir por 2 essa largura. |
-|tunel1 distancia maxima           |  10.0 | Para configurar os túneis 1, 2, 3 e 4, deve-se considerar o fim do anterior como o início do próximo.|
-|tunel2 distancia maxima           |  20.0 | |
-|tunel3 distancia maxima           |  30.0 ||
-|tunel4 distancia maxima           |  40.0 | Caso queira eliminar o túnel 4, deve-se igualar a distância máxima dos túneis 3 e 4, distribuindo as distâncias nos outros 3 túneis conforme necessário. O ultimo tunel tem o mesmo valor da distancia maxima|
-|centro do objeto para a camera    |  20.0 | O centro do objeto para a câmera deve ser em relação ao Lidar; este parâmetro é um valor em metros da distância de um objeto até o Lidar, onde a altura que o feixe do Lidar pega no objeto deve coincidir com o centro da imagem.|
-|linha                             |   16  |A linha e a coluna são para definir a matriz para fusão dos dados do Lidar e da câmera; a matriz deve ter o número de linhas igual ao de colunas (ex: 32x32, 16x16, 8x8).|
-|coluna                            |   16  |  |
-|distancia euclidiana parametro    |  0.4  | A distância euclidiana é um parâmetro em metros; o padrão está configurado para que, se os pontos tiverem até 0.4 metros de distância entre eles, sejam considerados o mesmo objeto.|
-
-Localizado em: lidar2D/src/lidar_pkg/scripts
-
-arquivo: configuracao.cfg
-
-
