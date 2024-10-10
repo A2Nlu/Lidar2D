@@ -247,6 +247,6 @@ OBS. Sempre confira com o comando `ip link` se a pcan é realmente can0
 
 Caso não tenha a interface plugada, o codigo da erro e não roda, importante comentar duas linhas no codigo e recompilar, nesse modo os dados dos objetos serão somente publicados no tópico do ROS. 
 
-![linha a se comentar no codigo](videos/linhaComentar.gif)
+![linha a se comentar no codigo](imagens/linhaComentar.jpeg)
 
-![linha a se comentar no codigo](videos/linhaComentar2.gif)
+![linha a se comentar no codigo](imagens/linhaComentar2.jpeg)
