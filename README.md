@@ -143,6 +143,8 @@ lidar2d/
   | String           | Falha ao receber dados do lidar       | Aviso caso o Lidar pare de mandar informações    |
   | String           | Falha ao receber dados da câmera      | Aviso caso a câmera pare de mandar informações   |
 
+  ![Aviso do lidar](videos/aviso.gif)
+
   ### 6. Tópico /objetos_lidar_camera
   Este tópico recebe as mensagens de objetos detectados e estão estruturadas conforme a tabela a seguir:
   
