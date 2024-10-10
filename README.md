@@ -189,7 +189,7 @@ lidar2d/
   | **risco:** 5                    | **risco:** 0                 | **risco:** 4                  |
   | **tipo:** desconhecido          | **tipo:** chair              | **tipo:** Person              |
 
-  ***add um gif da publicação no topico com a ros bag coletada**
+  ![exemplo de publicação no topico](videos/objetos.gif)
 
   ### 7. Envio das mensagens dos objetos detectados via CAN
   Uma opção de recebimento dos dados é via CAN, a uma velocidade de 500 kbit, usando a interface PCAN. Os dados foram codificados para envio no barramento, com um tamanho de 8 bytes, seguindo a seguinte estrutura:
